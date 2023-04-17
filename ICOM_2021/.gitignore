@@ -1,0 +1,45 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+Practica_*/exe
+Clases/*
+.vscode/settings.json
+exe
+Practica_10/aux.cpp
+aux.cpp
+Practica_6/matrix_ej5.cpp
+Practica_6/aux_Manu.cpp
+.vscode/c_cpp_properties.json
+.vscode/launch.json
+.vscode/tasks.json
+Practica_04/ej_03_Borrar.cpp
+Examenes/2do_Parcial_Correcciones/*
