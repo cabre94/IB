@@ -1,0 +1,34 @@
+\clearpage
+\section*{Ejercicio 2 - Dilema del prisionero multijugador}
+
+Tenemos los payoff $C_i$ y $D_i$ que corresponden a tomar la estrategia de confesar y defraudar (respectivamente) cuando $i$ jugadores cooperan. 
+
+Las características del dilema del prisionero en 2 jugadores eran las siguientes:
+\begin{itemize}
+    \item Individualmente, la mejor estrategia es defraudar en lugar de cooperar, condición que se traduce en que $D_1 > C_1$ y $D_0 > C_0$.
+    \item Por otro lado, a nivel colectivo, la cooperación mutua es mas conveniente que la defraudación mutua, es decir que $C_1 > D_0$.
+\end{itemize}
+
+Juntando ambas condiciones se tiene que
+\begin{equation}
+    D_1 > C_1 > D_0 > C_0.
+    \label{dilema_2jugadores}
+\end{equation}
+
+Para el caso de $n$ jugadores, la generalización de que individualmente a cada jugador le es conveniente defraudar en vez de cooperar, la podemos escribir como
+\begin{equation}
+    D_i > C_i\,\, \forall i \in \left\lbrace 0, \cdots n-1 \right\rbrace.
+    \label{dilema_1}
+\end{equation}
+
+Por otro lado, para generalizar el hecho de que la cooperación colectiva es mejor que la defraudación colectiva, tenemos que pedir que
+\begin{equation}
+    C_{n-1} > D_0.
+    \label{dilema_2}
+\end{equation}
+
+Podemos recuperar la condición \ref{dilema_2jugadores} del juego para 2 jugadores usando la condición \ref{dilema_2} y la condición \ref{dilema_1} para $i=0$ e $i=n-1$
+\begin{equation}
+    D_{n-1} > C_{n-1} > D_0 > C_0
+\end{equation}
+que tomando $n=2$ es la condición \ref{dilema_2jugadores}.

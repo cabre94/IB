@@ -1,0 +1,53 @@
+\section*{Ejercicio 3 - Competencia cíclica}
+
+Tenemos el sistema descripto por
+\begin{align}
+    \dot{n_1} &= n_1 \left( 1 - n_1 -\alpha n_2 - \beta n_3 \right) \\[6pt]
+    \dot{n_2} &= n_2 \left( 1 - \beta n_1 - n_2 - \alpha n_3 \right) \\[6pt]
+    \dot{n_3} &= n_3 \left( 1 - \alpha n_1 -\beta n_2 - n_3 \right) \\[6pt]
+\end{align}
+con $0<\beta<1 < \alpha$ y $\alpha + \beta > 2$.
+
+Al buscar los puntos fijos, podemos ver que la ecuación $i$ se anula si $n_i = 0$ o si el termino del paréntesis se anula. De manera que tenemos 8 puntos de equilibrio dadas todas la combinaciones. Ademas, dada la simetría del sistema, sabemos que si obtenemos un punto fijo $\left(a,b,c\right)$, entonces las permutaciones $\left(b,c,a\right)$ y $\left(c,a,b\right)$
+también son punto fijo. Esto nos ahorra un poco de cuentas (aunque no todas), de las cuales se obtienen los puntos $\left(0,0,0\right)$, $\left(1,0,0\right)$, $\left(0,1,0\right)$, $\left(\frac{1}{\alpha + \beta + 1},\frac{1}{\alpha + \beta + 1},\frac{1}{\alpha + \beta + 1}\right)$, $\left(\frac{\alpha-1}{\alpha \beta -1},\frac{\beta -1 }{\alpha \beta -1},0\right)$, $\left(\frac{\beta -1 }{\alpha \beta -1},0, \frac{\alpha-1}{\alpha \beta -1}\right)$ y $\left(0, \frac{\alpha-1}{\alpha \beta -1}\right), \frac{\beta -1 }{\alpha \beta -1}$. Estas ultimas tres corresponden a poblaciones negativas, ya que $\beta < 1$, con lo cual no serán de importancia.
+
+Irónicamente, el calculo del Jacobiano es menos cuentoso, el cual es
+\begin{equation}
+    J =
+    \begin{pmatrix}
+        1-2n_1-\alpha n_2 -\beta n_3    & -\beta n_2                        & -\alpha n_3  \\[6pt]
+        -\alpha n_1                     & 1-\beta n_1 -2 n_2 -\alpha n_3    & -\beta n_3\\[6pt]
+        -\beta n_1                      & -\alpha n_2                       & 1- \alpha n_1 -\beta n_2 -2n_3. 
+    \end{pmatrix}
+    % \Rightarrow \text{Punto Saddle}
+\end{equation}
+que luego evaluando en los puntos fijos obtenemos
+\begin{equation}
+    J |_{\left(0,0,0\right)}=
+    \begin{pmatrix}
+        1   & 0     & 0 \\[6pt]
+        0   & 1     & 0 \\[6pt]
+        0   & 0     & 1
+    \end{pmatrix}
+    \Rightarrow \text{Eq. inestable} 
+\end{equation}
+\begin{equation}
+    J |_{\left(1,0,0\right)}=
+    \begin{pmatrix}
+        -1   & -\alpha      & -\beta \\[6pt]
+        0    & 1-\beta      & 0 \\[6pt]
+        0    & 0            & 1-\alpha
+    \end{pmatrix}
+    \Rightarrow \text{Saddle node} 
+\end{equation}
+y dada la simetria del problema, sabemos entonces que $\left(0,1,0\right)$ y $\left(0,0,1\right)$ también son saddle. Por ultimo
+\begin{equation}
+    J |_{\left(\frac{1}{\alpha + \beta + 1},\frac{1}{\alpha + \beta + 1},\frac{1}{\alpha + \beta + 1}\right)}= \frac{1}{1+\alpha+\beta}
+    \begin{pmatrix}
+        -1          & -\alpha   & -\beta \\[6pt]
+        -\beta      & -1        & -\alpha \\[6pt]
+        -\alpha     & -\beta    & -1
+    \end{pmatrix}
+    % \Rightarrow \text{Saddle node} 
+\end{equation}
+cuyos autovalores son $-1$ y $\frac{\alpha +\beta -2}{2 \left(1+\alpha+\beta\right)} \pm i \frac{\sqrt{3}}{2} \frac{\alpha - \beta}{1+\alpha+\beta}$, que como la parte real es positiva (ya que $\alpha+\beta > 2$) es un saddle\footnote{Creo}.

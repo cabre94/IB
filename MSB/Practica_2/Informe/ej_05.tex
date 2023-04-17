@@ -1,0 +1,14 @@
+\section*{Ejercicio 5 - Metapoblaciones de presa y depredador}
+
+De las diapositivas de clase, tomamos el modelo de dos especies compitiendo, en donde la especie $p_1$ es mejor colonizadora y desplaza a la especie $p_2$ (donde $p_i$ es la fracción de parches ocupados). $c_i$ son las tasas de colonización de cada especie y $c_i$ las tasas de extinción o probabilidad de que un parche quede vacio
+\begin{align}
+    \dot{p_1} &= c_1 p_1 \left(1-p_1\right) -e_1 p_1 \\ 
+    \dot{p_2} &= c_2 p_2 \left(1-p_1-p_2\right) -e_2 p _2 - c_1 p_1 p_2 
+\end{align}
+
+Los puntos fijos del sistema son $\left(0,0\right)$, $\left[0, 1-\frac{e_2}{c_2}\right]$, $\left(1-\frac{e_1}{c_1}\right)$ y $\left(1-\frac{e_1}{c_1}, \frac{e_1}{c_1} + \frac{c_1-e_2-e_1}{c_2}\right)$. En el punto fijo $\left(0,0\right)$ no hay ninguna especie. En $\left[0, 1-\frac{e_2}{c_2}\right]$ tenemos solo tenemos a la presa como especie sobreviviente y es un caso posible solo si $\frac{e_2}{c_2} < 1$. Por otro lado, $\left(1-\frac{e_1}{c_1}\right)$ es un equilibrio donde solo hay depredador y es un equilibrio posible si $\frac{e_1}{c_1} < 1$. 
+
+Por ultimo, para el equilibrio que existe coexistencia $\left(1-\frac{e_1}{c_1}, \frac{e_1}{c_1} + \frac{c_1-e_2-e_1}{c_2}\right)$, tenemos primero que debe cumplirse $\frac{e_1}{c_1} < 1$ para que haya población de depredador. Por otro lado, si queremos que sea una equilibrio estable, los dos autovalores deben ser negativos, con lo cual calculando el Jacobiano obtenemos la condición
+\begin{equation}
+    c_2 > c_1 \left(\frac{c_1 + e_2 + e_1}{e_1}\right).
+\end{equation}

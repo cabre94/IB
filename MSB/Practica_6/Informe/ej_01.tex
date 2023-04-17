@@ -1,0 +1,204 @@
+\section*{Ejercicio 1 - Halcones y palomas extendidos}
+
+\subsection*{Halcones, palomas y bravucones}
+
+Queremos analizar el juego de halcones, palomas y bravucones mediante la dinámica del replicador, cuya matriz de payoff es
+\begin{equation}
+    A =
+\begin{pmatrix}
+\frac{G-C}{2} & G & G \\[4pt]
+0 & \frac{G}{2} & 0 \\[4pt]
+0 & G & \frac{G}{2}. \\
+\end{pmatrix}
+\end{equation}
+
+Vamos a tomar $\vec{x} = \left(x,y,z\right)$ a las proporciones de halcones, palomas y bravucones, respectivamente. Para que la estrategia de halcón no sea dominante, tomaremos $C>G$. Ademas, recordamos la condición $x+y+z = 1$, con lo cual sera suficiente analizar solo dos ecuaciones de la dinámica. En particular, nosotros vamos a reemplazar $z=1-x-y$. Para la dinámica del replicador necesitamos los payoff de cada estrategia, ademas del payoff medio. Estos son
+\begin{equation}
+    f_x = \left(1,0,0\right) A \left(x,y,z\right)^t = \frac{G-C}{2}x + G\left(y+z\right) = G - \frac{G+C}{2}x
+\end{equation}
+\begin{equation}
+    f_y = \left(0,1,0\right) A \left(x,y,z\right)^t = \frac{G}{2} y
+\end{equation}
+\begin{equation}
+    f_z = \left(0,0,1\right) A \left(x,y,z\right)^t = Gy + \frac{G}{2}z = \frac{G}{2} \left(1-x+y\right)
+\end{equation}
+y para el payoff medio tenemos que
+\begin{equation}
+    \vec{f} = xf_x + yf_y + zf_z = -\frac{C}{2} x^2 + \frac{G}{2}.
+\end{equation}
+
+Con esto, ya podemos plantear las ecuaciones del replicador para $x$ e $y$
+\begin{equation}
+    \dot{x} = x \left(f_x - \vec{f}\right) = \cdots = \frac{x}{2} \left( Cx^2  - \left(G+C\right)x +G  \right)
+    \label{eq1:x}
+\end{equation}
+\begin{equation}
+    \dot{y} = y \left(f_y - \vec{f}\right) = \cdots = \frac{y}{2} \left(Cx^2 + Gy - G \right).
+    \label{eq2:y}
+\end{equation}
+
+Pasamos ahora a analizar los puntos fijos del sistema. Si $x=0\Rightarrow \dot{x}=0$, luego para que $\dot{y} = 0$ tenemos dos opciones: una es que $y=0\rightarrow z = 1$, con lo cual $\left(0,0,1\right)$ es un punto fijo. si $y\neq 0$, entonces para el segundo termino de la Ec \ref{eq2:y} se anule, obtenemos que $y=1$, siendo entonces $\left(0,1,0\right)$ otro punto fijo.
+
+Si $x\neq 0 $, el segundo termino de \ref{eq1:x} debe anularse. Vemos que
+\begin{equation}
+    Cx^2  - \left(G+C\right)x +G = C \left(x-1\right) \left(x \dfrac{G}{C}\right)
+\end{equation}
+con lo cual tenemos dos opciones. Si $x=1$, entonces como $x+y+z=1$, obtenemos $\left(1,0,0\right)$ como equilibrio. Si $x = \frac{G}{C}$, entonces para que $\dot{y} = 0$ necesitamos que $y=0$ con lo cual $\left(\frac{G}{C},0,1-\frac{G}{C}\right)$ es punto fijo o que $y = 1- \frac{G}{C}$, siendo entonces $\left(\frac{G}{C},1-\frac{G}{C},0\right)$ el ultimo punto fijo del sistema.
+
+Para estudiar la estabilidad, calculamos las derivadas parciales de las ecuaciones \ref{eq1:x} y \ref{eq2:y} para obtener el Jacobiano, que resulta ser
+\begin{equation}
+    J =
+\begin{pmatrix}
+\frac{G}{2} - \left(G+C\right) x + \frac{3}{2}Cx^2  & 0 \\[6pt]
+Cxy                                                 &  \frac{C}{2}x^2 + Gy - \frac{G}{2} \\
+\end{pmatrix}
+\end{equation}
+con lo cual solo nos queda evaluar en los puntos fijos hallados.
+
+\begin{equation}
+J |_{\left(0,0,1\right)} =
+\begin{pmatrix}
+    \frac{C-G}{2}  & 0 \\[4pt]
+    0       & \frac{C-G}{2}
+\end{pmatrix}
+\Rightarrow \text{Eq. inestable}
+\end{equation}
+
+
+\begin{equation}
+J |_{\left(0,1,0\right)}=
+\begin{pmatrix}
+    \frac{G}{2}  & 0 \\[4pt]
+    0       & \frac{G}{2}
+\end{pmatrix}
+\Rightarrow \text{Eq. inestable} 
+\end{equation}
+
+
+\begin{equation}
+J |_{\left(1,0,0\right)} =
+\begin{pmatrix}
+    \frac{G}{2}  & 0 \\[4pt]
+    0       & \frac{-G}{2}
+\end{pmatrix}
+\Rightarrow \text{Punto Saddle}
+\end{equation}
+
+
+\begin{equation}
+J |_{\left(\frac{G}{C},0,1-\frac{G}{C}\right)} =
+\begin{pmatrix}
+    \frac{G}{2} \left( \frac{G}{C} -1 \right)  & 0 \\[4pt]
+    0       & \frac{G}{2} \left( \frac{G}{C} -1 \right)
+\end{pmatrix}
+\Rightarrow \text{Eq. Estable}
+\end{equation}
+
+
+\begin{equation}
+J |_{\left(\frac{G}{C},1-\frac{G}{C},0\right)} =
+\begin{pmatrix}
+    \frac{G}{2} \left( \frac{G}{C} -1 \right)  & 0 \\[4pt]
+    0       & -\frac{G}{2} \left( \frac{G}{C} -1 \right)
+\end{pmatrix}
+\Rightarrow \text{Punto Saddle}
+% \Rightarrow \text{Equilibrio }  ^{\text{Estables si } g<c}_{\text{Inestables si } g>c}
+\end{equation}
+
+En la Fig. \ref{ej1:Bravucones}, se muestra el simplex obtenido numéricamente, utilizando $C=3$ y $G=1$ 
+
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Bravucones.pdf}
+    \caption{Simplex para el juego de halcones, palomas y bravucones.}
+    \label{ej1:Bravucones}
+\end{figure}
+
+
+
+\subsection*{Halcones, palomas y vengadores}
+
+Ahora pasamos a analizar el juego de halcones, palomas y vengadores mediante la dinámica del replicador, cuya matriz de payoff es
+\begin{equation}
+    A =
+\begin{pmatrix}
+\frac{G-C}{2} & G & \frac{G-C}{2} \\[6pt]
+0 & \frac{G}{2} & \frac{G}{2} \\[6pt]
+\frac{G-C}{2} & \frac{G}{2} & \frac{G}{2} \\
+\end{pmatrix}
+\end{equation}
+
+Nuevamente tomamos $\vec{x} = \left(x,y,z\right)$, $C>G$ y reemplazamos $z = 1-x-y$. Los payoff en este caso son
+\begin{equation}
+    f_x = \left(1,0,0\right) A \left(x,y,z\right)^t = \frac{G-C}{2} \left(x+z\right) + Gy = \frac{G-C}{2} + \frac{G+C}{2}y
+\end{equation}
+\begin{equation}
+    f_y = \left(0,1,0\right) A \left(x,y,z\right)^t = \frac{G}{2} \left(y+z\right) = \frac{G}{2} \left(1-x\right)
+\end{equation}
+\begin{equation}
+    f_z = \left(0,0,1\right) A \left(x,y,z\right)^t = \frac{G-C}{2}x + \frac{G}{2} \left(y+z\right) = \frac{G}{2} - \frac{C}{2} x
+\end{equation}
+y para el payoff medio tenemos que
+\begin{equation}
+    \vec{f} = xf_x + yf_y + zf_z = \frac{C}{2} x^2 - Cx + Cxy + \frac{G}{2}.
+\end{equation}
+
+Y las ecuaciones de la dinámica del replicador resultan
+\begin{equation}
+    \dot{x} = x \left(f_x - \vec{f}\right) = \cdots = x \left( -\frac{C}{2}x^2 - Cxy + Cx + \frac{G+C}{2}y -\frac{C}{2} \right)
+    \label{eq2:x}
+\end{equation}
+\begin{equation}
+    \dot{y} = y \left(f_y - \vec{f}\right) = \cdots = yx \left( -\frac{G}{2} + C - \frac{C}{2} x - Cy \right).
+    \label{eq22:y}
+\end{equation}
+
+Buscando los puntos fijos (vamos a saltear algunas cuentas sin mucho interés) obtenemos tres puntos fijos. $\left(0, y, 1-y\right)$, $\left(1,0,0\right)$ y $\left(\frac{G}{C}, 1-\frac{G}{C}, 0\right)$. En particular, $\left(0, y, 1-y\right)$ es punto fijo par cualquier valor de $y$, con lo cual tenemos infinitos puntos fijos ubicados en uno de los lados del simplex.
+
+Calculamos las derivadas parciales de las ecuaciones \ref{eq2:x} y \ref{eq22:y} para obtener el Jacobiano, que resulta ser
+\begin{equation}
+    J =
+\begin{pmatrix}
+-\frac{3}{2}Cx^2 - 2Cxy + 2Cx + \frac{G+C}{2}y - \frac{C}{2} & -Cx^2 + \frac{G+C}{2}x \\[6pt]
+-\frac{G}{2}y + Cy - Cxy - C y^2  &  -\frac{G}{2}x + Cx - \frac{C}{2} x^2 - 2Cxy \\
+\end{pmatrix}
+\end{equation}
+y evaluamos en los puntos fijos hallados
+\begin{equation}
+J |_{\left(1,0,0\right)} =
+\begin{pmatrix}
+    0  & -C + \frac{G+C}{2} \\[4pt]
+    0  & \frac{C-G}{2}
+\end{pmatrix}
+\Rightarrow \text{Como $C > G$, tenemos una acumulación de inestables.}
+\end{equation}
+
+
+\begin{equation}
+J |_{\left(\frac{G}{C},1-\frac{G}{C},0\right)}=
+\begin{pmatrix}
+    0  & -\frac{1}{2}\frac{G^2}{C} + \frac{G}{2} \\[6pt]
+    \frac{1}{2}\frac{G^2}{C} - \frac{G}{2}       & \frac{G^2}{C} - G
+\end{pmatrix}
+% \Rightarrow \text{Eq. inestable} 
+\end{equation}
+en este caso, los autovalores son ambos iguales a $\frac{G}{C}\frac{G-C}{2}$. Como consideramos $C >G$, tenemos que este punto de equilibrio es estable. Por ultimo,
+\begin{equation}
+J |_{\left(0,y,1-y\right)} =
+\begin{pmatrix}
+    \frac{G+C}{2}y - \frac{C}{2}  & 0 \\[6pt]
+    y\left(-\frac{G}{2} + C - Cy\right)       & 0
+\end{pmatrix}
+% \Rightarrow \text{Punto Saddle}
+\end{equation}
+en donde dependiendo de si $\frac{G+C}{2}y - \frac{C}{2}$ es mayor o menor que 0, tendremos una acumulación de inestables o estables respectivamente. Es decir que el lado del simplex donde tenemos infinitos puntos de equilibrio, un segmento sera acumulación de estables y el restante sera de inestables.
+
+En la Fig. \ref{ej1:Vengadores}, se muestra el simplex obtenido numéricamente, utilizando $C=3$ y $G=1$ 
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Vengativos.pdf}
+    \caption{Simplex para el juego de halcones, palomas y vengativos.}
+    \label{ej1:Vengadores}
+\end{figure}

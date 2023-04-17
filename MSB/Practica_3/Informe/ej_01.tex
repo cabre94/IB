@@ -1,0 +1,23 @@
+\section*{Ejercicio 1 - Distribución binomial}
+
+Consideramos una población de individuos que no se reproducen y evolucionan a tiempo discreto. A cada paso de tiempo cada uno de ellos puede morir con probabilidad $d$. 
+
+Para la simulación numérica se tomaron poblaciones con una cantidad de individuos inicial de $N_0=100$ y se simularon 100000 poblaciones independientes, de manera de obtener la distribución de probabilidad de la población en función del tiempo. Para cada paso de tiempo, se gráfico ademas la distribución binomial exacta
+\begin{equation}
+    P\left(n,t\right) = \begin{pmatrix}
+        N_0 \\ k 
+    \end{pmatrix} p^n q^{N_0 - n}
+\end{equation}
+donde $p = (1-d)^t$, que es la probabilidad de que un individuo haya sobrevivido a t pasos del tiempo y $q=1-p$. De esta manera $P\left(n,t\right)$ es la probabilidad de que $n$ individuos sobrevivan t pasos del tiempo.
+
+
+En la Fig. \ref{ej1:resultado} se observan los resultados para los primeros pasos temporales de la simulación numérica descripta, utilizando $d=0.3$. Vemos que la simulación obtenida coincide completamente con la distribución binomial exacta y que, como es de esperar, la distribución de probabilidad se corre hacia el 0 conforme avanza el tiempo, ya que la población solo puede reducirse debido a las muertes.
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../ej1_Resultados/Evolucion.pdf}
+    \caption{Evolución temporal de la distribución de probabilidad de la población para $d=0.3$. Ademas, a modo de comparación, se gráfica la distribución binomial exacta, la cual describe perfectamente la evolución del sistema.}
+    \label{ej1:resultado}
+\end{figure}
+
+Por ultimo, se adjunta con este informe algunos \texttt{.gif} de la evolución de la población para distintos valores de $d$. La única característica relevante al modificar $d$ es que a mayores valores de $d$, menor el tiempo necesario para que la distribución de probabilidad alcance el 0.

@@ -1,0 +1,83 @@
+\section*{Ejercicio 2 - Epidemia de COVID-19}
+
+En la Fig. \ref{ej2:Datos} se observan los datos provistos por la cátedra \href{https://drive.google.com/file/d/1vtyItbk4Nuv7aKSKs6NnnTxVTsDfInf_/view?usp=sharing}{2020-tp05-covid19.csv} de COVID-19 en Argentina, correspondientes a la cantidad de infectados reportados, muertes reportadas, unidades de terapia intensiva (UTI) y tests realizados a partir del 5 de marzo de 2020 (considerado como dia 0). Para algunas fechas en el set de datos, se encontraron valores inválidos, los cuales fueron reemplazados por 0.
+
+\begin{figure}[htb!]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../ej2_Resultados/Infectados.pdf}
+        \label{ej2:infectados}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../ej2_Resultados/Muertes.pdf}
+        \label{ej2:muertes}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../ej2_Resultados/UTI.pdf}
+        \label{ej2:UTI}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../ej2_Resultados/Tests.pdf}
+        \label{ej2:Tests}
+    \end{subfigure}
+    \caption{Se observan los datos de infectados, muertes, UTI y test realizados en Argentina durante la pandemia de COVID-19 a partir del 5 de marzo de 2020.}
+    \label{ej2:Datos}
+\end{figure}
+
+Para todos los datos (aunque en menor medida para las UTI), se observan oscilaciones, las cuales pueden deberse a variaciones en la carga de datos en el transcurso de la semana, como por ejemplo una reducción en la cantidad de testeos en los fines de semana.
+
+Para la cantidad de infectados reportados, se observa una primera ola de infectados con un pico alrededor del 18 de octubre de 2020. Seguido a esta primera ola se observa un segundo pico de infectados cercano al 7 de enero de 2021, lo cual puede deberse a un aumento en la cantidad de infectados debido a las festividades de navidad y año nuevo.
+
+Para la cantidad de muertes, es llamativo el pico de aproximadamente 3400 muertes en el 1 de octubre de 2020. Esto podría deberse a una carga de datos pendiente realizada en dicha fecha. 
+
+En cuanto a las UTI, se observa que la señal es menos ruidosa que el resto de datos, lo cual es razonable ya que las unidades suelen ser utilizadas durante una mayor cantidad de días. Ademas, se observa un pico en la cantidad de UTI aproximadamente en el 1 de noviembre de 2020, cercano al pico de infectados del 18 de octubre.
+
+Por otra parte, en comparación con los datos de infectados, no se observa el segundo pico adjudicado a las festividades de navidad y año nuevo. Esto podría deberse a que el sector de la sociedad mas vulnerable a la enfermedad (y por lo tanto mas probable que requieran UTI), no dejo de mantener los recaudos recomendados para evitar el contagio, no asi el sector menos vulnerable, aumentando asi la cantidad de infectados, pero no las UTI.
+
+En cuanto a la cantidad de tests realizados, no se observa ninguna característica destacable en los datos, mas que una aumento sostenido en la cantidad de test a lo largo del tiempo, lo cual puede deberse simplemente a una mejora en los testeos, ya sea en los tipos de testeos (mas rápidos o eficaces) como en una mayor capacitación en el personal medico.
+
+
+\begin{figure}[htb!]
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../ej2_Resultados/Infectados_suavizado.pdf}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../ej2_Resultados/Pico_infectados.pdf}
+    \end{subfigure}
+    \caption{A la izquierda, se observan los datos de la cantidad de infectados reportados y un suavizado de los datos utilizando una ventana de 7 días. A la derecha, se observan los primeros los datos suavizados de la cantidad de infectados, correspondientes a los primeros 280 días y el pico observado en el día 228.}
+    \label{ej2:Infectados_suavizado}
+\end{figure}
+
+Terminado este primer análisis, se procedió a intentar predecir el primer pico de infectados. Para esto, primero se procedió a realizar un suavizado de los datos para disminuir las oscilaciones. Esto se realizo con filtro con una ventana de 7 días y el resultado puede observarse a la izquierda en la Fig. \ref{ej2:Infectados_suavizado}. A la derecha en la misma figura, se observa la señal suavizada y el pico de infectados ubicado en el 18 de noviembre de 2020, o el día 228 a partir de la primera fecha con datos disponibles, correspondiente al 5 de marzo de 2020.
+
+Con esta señal suavizada se busco realizar un ajuste con un pico epidémico del tipo $a \text{sech}^2 \left(bt +c\right)$ variando la cantidad de datos utilizados entre 120 y 280 días. En la Fig. \ref{ej2:Ajuste_tfit} se observan una comparación entre los datos de infectados, suavizados, y el ajuste obtenido para utilizando 175, 235 y 270 datos respectivamente.
+
+\begin{figure}[htb!]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../ej2_Resultados/fit_results/Ajuste_tfit=175.pdf}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../ej2_Resultados/fit_results/Ajuste_tfit=235.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../ej2_Resultados/fit_results/Ajuste_tfit=270.pdf}
+    \end{subfigure}
+    \caption{Comparación entre los datos de infectados suavizados y el ajuste con un pico epidémico del tipo $a \text{sech}^2 \left(bt +c\right)$, utilizando 175, 235 y 270 datos respectivamente.}
+    \label{ej2:Ajuste_tfit}
+\end{figure}
+
+En la Fig. \ref{ej2:Pico_infectados_ajuste}se observa una comparación entre el pico real ubicado en el dia 228 y el pico predicho a partir del ajuste, variando la cantidad de datos utilizados. Si bien se observa que utilizando alrededor de 235 datos, es posible obtener el pico de infectados real, este resultado no es muy esperanzador, ya que se esta "prediciendo" un pico de infectados que ya ocurrió. Ademas de las complicaciones provenientes de la base de datos, la incapacidad de predecir correctamente el pico de infectados puede deberse a hipótesis del modelo SIR que no se cumplen. Por ejemplo, este modelo no contempla la posibilidad de individuos recuperados vuelvan a ser susceptibles luego de un determinado tiempo, lo cual si sucede en el caso del COVID-19, en donde la inmunidad por haber contraído la enfermedad no es permanente.
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../ej2_Resultados/Pico_infectados_ajuste.pdf}
+    \caption{Se observan los picos predichos para la primera ola de infectados, variando la cantidad de datos $t_{fit}$ utilizados para realizar el ajuste.}
+    \label{ej2:Pico_infectados_ajuste}
+\end{figure}
+
+ 

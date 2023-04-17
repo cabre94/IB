@@ -1,0 +1,64 @@
+\section*{Ejercicio 2 - Control de plagas}
+
+Tenemos el modelo
+\begin{equation}
+    \dot{N} = \left[\frac{aN}{N+n} - b\right]N - kN\left(N+n\right) = N \left[ \frac{aN}{N+n} - b - k\left(N+n\right)\right]
+    \label{eq:sistema}
+\end{equation}
+para describir una población de $n$ insectos estériles en una población $N$ de insectos fértiles, donde $a>b>0$ y $k>0$.
+
+Primero queremos obtener la capacidad de carga del sistema. Para esto podemos considerar que no hay insectos estériles, es decir, tomar $n=0$. Tenemos entonces que la Ec. \ref{ej1:Simulacion} se reduce a
+\begin{equation}
+    \dot{N} = \left[a-b\right] N - k N^2 = \left(a-b\right) \left[1- \frac{N}{\left(\frac{a-b}{k}\right)}\right]N
+\end{equation}
+y comparando con la ec. logística, vemos que la capacidad de carga es $K = \frac{a-b}{k}$.
+
+Para ver el numero critico $n_c$ que erradicaría la especie, primero buscamos los puntos de equilibrio planteando $\dot{N}=0$. Uno de los puntos fijos puede obtenerse fácilmente y es $N=0$. Trabajando un poco el segundo termino de la Ec. \ref{eq:sistema}, se obtiene que los otros dos puntos de equilibrio que son
+\begin{equation}
+    N_{1,2}^{*} = -n + \frac{a-b}{2k} \pm \sqrt{\left(\frac{b-a}{2k}\right)^{2} - a\frac{n}{k}}.
+    \label{eq:ptos_fijos}
+\end{equation}
+
+Ahora, para erradicar la especie, queremos que el único punto fijo sea $N=0$. Para esto pedimos que los puntos fijos dados por \ref{eq:ptos_fijos} sean complejos, buscando el valor de $n$ para el cual el radicando se anule
+\begin{equation}
+    \left(\frac{b-a}{2k}\right)^{2} - a\frac{n}{k}\,\,\Rightarrow\,\,n_c = \frac{\left(b-a\right)^2}{4ka}
+\end{equation}
+en donde ademas podemos ver que
+\begin{equation}
+    n_c = \frac{\left(b-a\right)^2}{4ka} < \frac{1}{4} \underbrace{\frac{a-b}{k}}_{K} \underbrace{\frac{a-b}{a}}_{<1} < \frac{K}{4}.
+\end{equation}
+
+Pasamos ahora a la segunda parte del ejercicio en donde solamente se liberan animales estériles una sola vez con una misma tasa de mortalidad que los fértiles. Considerando entonces una misma tasa de mortalidad $b$ y un termino de competencia análogo al de los insectos fértiles, tenemos que las ecuaciones del sistema son
+\begin{align}
+    \dot{N} &= \left[\frac{aN}{N+n} - b\right]N - kN\left(N+n\right) = N \left[ \frac{aN}{N+n} - b - k\left(N+n\right)\right]\\[5pt]
+    \dot{n} &= -bn - kn\left(N+n\right) = n \left[-b-k\left(N+n\right)\right].
+\end{align}
+
+Analicemos entonces los puntos fijos. Planteando $\dot{n} = 0$ obtenemos dos posibles valores de $n^*$, $n^*=0$ o $n^*=\frac{-b-kN}{k}$. Dado que $n$ representa una población, solo nos interesan valores positivos, con lo cual descartamos cualquier posible punto fijo donde $n^*=\frac{-b-kN}{k}$. Con $n^*=0$, reemplazando en la ecuación para $\dot{N}=0$, obtenemos valores previamente hallados: $N^*=0$ y $N^*=\frac{a-b}{k}$.
+
+Para ver si es posible o no erradicar la especie, vamos a analizar la estabilidad. Calculando el Jacobiano del sistema y evaluando en los dos puntos de equilibrio que nos interesan, obtenemos
+\begin{equation}
+J |_{\left(0,0\right)}=
+\begin{pmatrix}
+    -b   & 0 \\[6pt]
+    0   & 0
+\end{pmatrix}
+\Rightarrow \text{Acumulación de estables} 
+\end{equation}
+\begin{equation}
+J |_{\left(\frac{a-b}{k},0\right)} =
+\begin{pmatrix}
+    b-a  & b-2a \\[6pt]
+    0   & -a 
+\end{pmatrix}
+\Rightarrow \text{Eq. estable }
+\end{equation}
+de manera que no es posible erradicar la plaga con una suelta de estériles.
+
+Por ultimo, tenemos el modelo en donde una fracción $\gamma$ de los insectos nace estéril
+\begin{align}
+    \dot{N} &= \left[\frac{aN}{N+n} - b\right]N - kN\left(N+n\right) = N \left[ \frac{aN}{N+n} - b - k\left(N+n\right)\right]\\[5pt]
+    \dot{n} &= \gamma N -bn.
+\end{align}
+
+Analizando los puntos fijos, de $\dot{n}=0$ primero obtenemos que $n^* = \frac{\gamma}{b}N$. Luego, a partir de $\dot{N}=0$ obtenemos $\left(0,0\right)$ como un primer punto fijo. El segundo es $\left(\frac{\gamma}{b}\left(\frac{a-b-\gamma}{k\left(1+\frac{\gamma}{b}\right)^2}\right), \frac{a-b-\gamma}{k\left(1+\frac{\gamma}{b}\right)^2}\right)$. Para este punto no sea una posibilidad de supervivencia, es suficiente con pedir que $\gamma > a-b$ (de manera que el punto fijo se encuentra en poblaciones negativas y el otro es $\left(0,0\right)$), lo cual es posible ya que por el enunciado $a>b$.

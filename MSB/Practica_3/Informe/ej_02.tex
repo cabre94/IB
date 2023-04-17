@@ -1,0 +1,84 @@
+% \clearpage
+\section*{Ejercicio 2 - Ecuaciones de Langevin}
+\subsection*{Ruido aditivo}
+
+Se considero una población continua $x\left(t\right)$, con una dinámica multiplicativa en tiempo discreto y un ruido aditivo
+\begin{equation}
+    x\left(t+1\right) = a x\left(t\right) + z\left(t\right)
+\end{equation}
+donde la variable estocástica $z\left(t\right)$ tiene una distribución gaussiana con media cero y desviación standard $\sigma$. 
+
+Para la simulación del sistema se utilizó $a=1.05$ y $\sigma=0.2$, tomando como condición inicial $x\left(t=0\right) = 1$ y hasta $t=50$. En la Fig. \ref{ej2:12trayectorias} se observan 12 trayectorias simuladas, ademas de la evolución del sistema sin ruido. En la Fig. \ref{ej2:estadistica_promedio} se observa la trayectoria sin ruido y una comparación entre un promedio de trayectorias, para distintas cantidades de trayectorias. De aquí se observa que al aumentar el numero de trayectorias promediadas, el resultado se asemeja cada vez mas a la trayectoria sin ruido. Por ultimo, en la Fig \ref{ej2:mean_std} se observa la trayectoria promedio y la desviación standard para cada tiempo, obtenidas a partir de 1000000 de trayectorias independientes, en donde se observa un aumento en la desviación standard conforme avanza el tiempo.
+
+\begin{figure}[htb!]
+    \centering
+    \begin{subfigure}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{../ej2_Resultados/Aditivo/12_trayectorias.pdf}
+        \caption{12 trayectorias.}
+        \label{ej2:12trayectorias}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{../ej2_Resultados/Aditivo/Estadistica_promedio.pdf}
+        \caption{Promedio de trayectorias.}
+        \label{ej2:estadistica_promedio}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{../ej2_Resultados/Aditivo/MeanAndStd.pdf}
+        \caption{Media y desviación standard de 1000000 de trayectorias.}
+        \label{ej2:mean_std}
+    \end{subfigure}
+    \caption{Resultados de las simulaciones obtenidas para el modelo con dinámica multiplicativa en tiempo discreto y un ruido aditivo.}
+    \label{ej2:Resultados}
+\end{figure}
+
+Por ultimo, en la Fig. \ref{ej2:3D} se observa la evolución de la distribución de probabilidad de la población, en donde se observa que el centro de la distribución coincide con la trayectoria sin ruido, la cual se indica en la base del gráfico.
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{../ej2_Resultados/Aditivo/3D.pdf}
+    \caption{Evolución de la distribución de probabilidad $P\left(x,t\right)$.}
+    \label{ej2:3D}
+\end{figure}
+
+
+\subsection*{Ruido multiplicativo}
+
+Pasamos ahora a estudiar un sistema con ruido multiplicativo
+\begin{equation}
+    x\left(t+1\right) = a x \left(t\right) + z\left(t\right) x\left(t\right) 
+\end{equation}
+donde $z\left(t\right)$ mantiene las mismas características que el inciso anterior, es decir, tiene una distribución gaussiana con media cero y desviación standard $\sigma$. 
+
+Se repitió el análisis realizado para el sistema con ruido aditivo. En la Fig. \ref{ej2:12trayectorias_mult} se observan 12 trayectorias simuladas y una comparación con la trayectoria sin ruido. En comparación con el sistema s¿con ruido aditivo, se observa que las trayectorias presentan mayores fluctuaciones. En la Fig. \ref{ej2:estadistica_promedio_mult} se observa la trayectoria sin ruido y una comparación entre un promedio de trayectorias, para distintas cantidades de trayectorias. Al igual que en el sistema aditivo, al aumentar el numero de trayectorias promediadas, el resultado se asemeja cada vez mas a la trayectoria sin ruido. En la Fig \ref{ej2:mean_std_mult} se observa la trayectoria promedio y la desviación standard para cada tiempo, obtenidas a partir de 1000000 de trayectorias independientes.
+
+
+\begin{figure}[htb!]
+    \centering
+    \begin{subfigure}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{../ej2_Resultados/Multiplicativo/12_trayectorias.pdf}
+        \caption{12 trayectorias.}
+        \label{ej2:12trayectorias_mult}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{../ej2_Resultados/Multiplicativo/Estadistica_promedio.pdf}
+        \caption{Promedio de trayectorias.}
+        \label{ej2:estadistica_promedio_mult}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{../ej2_Resultados/Multiplicativo/MeanAndStd.pdf}
+        \caption{Media y desviación standard de 1000000 de trayectorias.}
+        \label{ej2:mean_std_mult}
+    \end{subfigure}
+    \caption{Resultados de las simulaciones obtenidas para el modelo con dinámica multiplicativa en tiempo discreto y un ruido multiplicativo.}
+    \label{ej2:Resultados_multiplicativo}
+\end{figure}
+
+En la Fig.\ref{ej2:3D_multiplicativo} se observa la evolución de la distribución de probabilidad de la población, en donde se observa que si bien la trayectoria sin ruido aumenta, el máximo de la densidad de probabilidad se mantiene siempre cercano al cero.
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../ej2_Resultados/Multiplicativo/3D.pdf}
+    \caption{Evolución de la distribución de probabilidad $P\left(x,t\right)$.}
+    \label{ej2:3D_multiplicativo}
+\end{figure}

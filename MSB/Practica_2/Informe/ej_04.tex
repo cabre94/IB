@@ -1,0 +1,30 @@
+\section*{Ejercicio 4 - Destrucción del hábitat y coexistencia}
+
+Tenemos el modelo de coexistencia competitiva jerarquizado definido por
+\begin{align}
+    \dot{x} &= -c_{a}xy + e_{a}y - c_{b}xz + e_{b}z \\[6pt]
+    \dot{y} &=  c_{a}xy - e_{a}y + c_{a}zy = c_{a} y \left(x+z\right) - e_a y          \\[6pt]
+    \dot{z} &=  c_{b}xz - e_{b}z - c_{a}zy
+\end{align}
+donde $x$ representa la fracción de zonas vacías, $y$ la de zonas ocupadas por el competidor superior (A) y $z$ la de zonas
+ocupadas por el competidor inferior (B). Además, $c_u$ son tasas de colonización y $e_i$ son tasas de extinción de cada
+competidor. Finalmente, $x + y + z = h$, la fracción de zonas habitables.
+
+Podemos reescribir al sistema como un sistema de dos dimensiones debido a que  $x + y + z = h$
+\begin{align}
+    \dot{y} &= c_{a} y \left(h-y\right) - e_a y          \\[6pt]
+    \dot{z} &=  c_{b}z \left(h-y-z\right) - e_{b}z - c_{a}zy
+\end{align}
+y del apunte \cite{Chule} (pagina 49) se tiene que el equilibrio mas relevante, que es un equilibrio de coexistencia, es
+\begin{equation}
+    y^* = h - \frac{e_a}{c_a} \\
+    z^* = \frac{e_a}{c_a} + \frac{e_a - e_b}{c_b} - h \frac{c_a}{c_b}
+\end{equation}
+en donde vemos que si $h < \frac{e_a}{c_a}$ entonces la población de A se extingue (ya que $y^*$ es negativo). En la Fig. \ref{fig:ej4} se observan las distintas fracciones en función del valor de $h$ para $c_a=0.3$, $c_b=0.8$, $e_a=0.15$ y $e_b = 0.2$.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{../ej_4.pdf}
+    \caption{Fracciones en función del valor de $h$ para $c_a=0.3$, $c_b=0.8$, $e_a=0.15$ y $e_b = 0.2$.}
+    \label{fig:ej4}
+\end{figure}

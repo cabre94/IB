@@ -1,0 +1,72 @@
+\section*{Ejercicio 1 - Comensalismo}
+
+Partimos del modelo de comensalismo regido por las ecuaciones
+
+\begin{align}
+    \dot{x} &= r_1 x \left[1 - \frac{x}{K_1} + b_{12}\frac{y}{K_1}\right] \\
+    \dot{y} &= r_2 y \left[1 - \frac{y}{K_2} + b_{21}\frac{x}{K_2}\right]
+\end{align}
+en donde utilizamos el mismo cambio de variables utilizado en clase dado por $\tau=r_1 t$, $\rho = \dfrac{r_2}{r_1}$, $u_1 = \dfrac{x}{K_1}$, $u_2 = \dfrac{y}{K_2}$, $a_{12} = b_{12}\frac{K_2}{K_1}$ y $a_{21} = b_{21}\frac{K_1}{K_2}$. De esta manera, el sistema nos queda
+\begin{align}
+    \dot{u_1} &= u_1 \left(1 - u_1 + a_{12} u_2\right) \\
+    \dot{u_2} &= \rho u_2 \left(1 - u_2 + a_{21} u_1\right).
+\end{align}
+
+Los puntos fijos de este sistema son $\left(0,0\right)$, $\left(0,1\right)$, $\left(1,0\right)$ y $\left(\frac{1+a_{21}}{1-a_{21}a_{12}},\frac{1+a_{12}}{1-a_{21}a_{12}}\right)$. Para analizar la estabilidad, calculamos el Jacobiano
+\begin{equation}
+    J =
+    \begin{pmatrix}
+        1-2u_1 + a_{12}u_2 & a_{12}u_1 \\[6pt]
+        \rho a_{21} u_2    & \rho \left( 1-2 u_2 + a_{21} u_1 \right). 
+    \end{pmatrix}
+    % \Rightarrow \text{Punto Saddle}
+\end{equation}
+
+y evaluando en los puntos fijos obtenemos
+
+\begin{equation}
+J |_{\left(0,0\right)}=
+\begin{pmatrix}
+    1   & 0 \\[6pt]
+    0   & \rho
+\end{pmatrix}
+\Rightarrow \text{Eq. inestable} 
+\end{equation}
+\begin{equation}
+J |_{\left(1,0\right)} =
+\begin{pmatrix}
+    -1  & a_{12} \\[6pt]
+    0   & \rho \left( 1 + a_{21} \right)
+\end{pmatrix}
+\Rightarrow \text{Punto Saddle ya que $a_{21} > 0$ }
+\end{equation}
+\begin{equation}
+    J |_{\left(1,0\right)} =
+    \begin{pmatrix}
+        1+a_{12}        & 0 \\[6pt]
+        \rho a_{21}     & -\rho
+    \end{pmatrix}
+    \Rightarrow \text{Punto Saddle ya que $a_{12} > 0$ }.
+\end{equation}
+
+Para el punto de equilibrio $\left(\frac{1+a_{21}}{1-a_{21}a_{12}},\frac{1+a_{12}}{1-a_{21}a_{12}}\right)$ la ecuación se vuelve complicada, por lo que es mejor realizar una simulación numérica. En la Fig. \ref{ej1:Simulacion} se observan los resultados de la simulación numérica para cuando el producto $a_{12} a_{21}$ es menor, igual o mayor que 1 y las respectivas nulclinas. Vemos que cuando  $a_{12} a_{21} > 1$, la intersección de las nulclinas se encuentra para valores negativos de $u_1$ y $u_2$, lo cual no es un valor que nos interese ya que estas variables representan poblaciones. Para $a_{12} a_{21} = 1$ las nulclinas son paralelas y el punto de equilibrio no existe. Por ultimo, para $a_{12} a_{21} < 1$, la intersección de las nulclinas se encuentra para valores positivos de $u_1$ y $u_2$ y es un punto estable. Pro ultimo, vemos que la estabilidad de los puntos de equilibrios hallados previamente concuerda con lo obtenido mediante el análisis con el Jacobiano.
+
+
+\begin{figure}[htb!]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../ej1_Resultados/StreamPlot_$a12=0.1_a21=0.5.pdf}
+        \caption{$a_{12} a_{21} < 1$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../ej1_Resultados/StreamPlot_$a12=0.5_a21=2.pdf}
+        \caption{$a_{12} a_{21} = 1$}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../ej1_Resultados/StreamPlot_$a12=3_a21=2.pdf}
+        \caption{$a_{12} a_{21} > 1$}
+    \end{subfigure}
+    \caption{Simulación numérica para el modelo de comensalismo.}
+    \label{ej1:Simulacion}
+\end{figure}

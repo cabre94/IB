@@ -1,0 +1,48 @@
+\clearpage
+\section*{Ejercicio 3 - Simulación estocástica}
+
+Tenemos un sistema con reproducción y competencia intraespecífica del tipo
+\begin{align}
+    A       &\overset{b}{\rightarrow} A + A \\ 
+    A + A   &\overset{d}{\rightarrow} A
+\end{align}
+la cual fue simulada por el algoritmo de Gillespie.
+
+Utilizando las tasas $b=0.1$ y $d=0.001$ y una población inicial de 40 individuos, se simularon 10000 trayectorias independientes, las cuales pueden observarse a la izquierda en la Fig. \ref{ej3:Resultados} y una comparación con la ecuación logística proveniente del desarrollo de van Kampen similar al realizado en clase. El resultado es un valor medio estacionario de 100, lo cual coincide con la ayuda del enunciado para esta elección de parámetros.
+
+\begin{figure}[htb!]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{../ej3_Resultados/Evolucion_Oscilatorio.pdf}
+        % \caption{12 trayectorias.}
+        % \label{ej3:trayectorias}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{../ej3_Resultados/Dist_probabilidad.pdf}
+        % \caption{Promedio de trayectorias.}
+        % \label{ej3:dist_prob}
+    \end{subfigure}
+    \caption{A la izquierda se observa las diferentes evoluciones de la población, utilizando $b=0.1$ y $d=0.001$ y una población inicial de 40 individuos y un total de 10000 simulaciones, ademas de una comparación con el modelo logístico obtenido a partir del desarrollo de van Kampel. A la derecha, se observa la distribucion de probabilidad estacionaria $P\left(n\right)$.}
+    \label{ej3:Resultados}
+\end{figure}
+
+Por otro lado, a la derecha de la Fig. \ref{ej3:Resultados}, se observa la distribución de probabilidad estacionaria $P\left(n\right)$ obtenida a partir de los valores de la población una vez finalizada la simulación. Ademas, se indica el valor medio de la misma, la cual nuevamente coincide con $A^* = 100$.
+
+Luego se repitió la misma cantidad de simulaciones pero para una elección de tas diferentes, $b=0.1$ y $d=0.02$ y una población inicial de 10 individuos, para obtener evoluciones de la población que terminen en extinciones por fluctuaciones. A la izquierda de la Fig. \ref{ej3:Resultados_b} se observan las distintas simulaciones realizadas, en donde prácticamente la totalidad de las poblaciones se extinguen al alcanzar 50 iteraciones. Por ultimo, a la derecha, se observa la distribución de probabilidad del tiempo de extinción.
+
+\begin{figure}[htb!]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{../ej3_Resultados/Evolucion_Extincion.pdf}
+        % \caption{12 trayectorias.}
+        % \label{ej3:trayectorias}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{../ej3_Resultados/Dist_tiempo_extincion.pdf}
+        % \caption{Promedio de trayectorias.}
+        % \label{ej3:dist_prob}
+    \end{subfigure}
+    \caption{A la izquierda se observa las diferentes evoluciones de la población, utilizando $b=0.1$ y $d=0.02$ y una población inicial de 10 individuos y un total de 10000 simulaciones. A la derecha, se observa la distribución de probabilidad del tiempo de extinción.}
+    \label{ej3:Resultados_b}
+\end{figure}
+

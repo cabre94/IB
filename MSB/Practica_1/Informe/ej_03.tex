@@ -1,0 +1,16 @@
+\section*{Ejercicio 3}
+\graphicspath{{Figuras/ej_03/}}
+
+Tenemos la expresión
+\begin{equation}
+    R(r) = r^{k+1} - (f_0 r^k +  s_0 f_1 r^{k-1} + s_0 s_1 f_2 r^{k-2} + \cdots + s_0 \dots s_{k-1} f_k)
+    \label{03:Ecuacion_1}
+\end{equation}
+que evaluada en $r=1$ se reduce a
+\begin{equation}
+    R(r=1) = 1 - (f_0 + s_0 f_1 + s_0 s_1 f_2+ \cdots + s_0 s_1 \dots s_{k-1}  f_k).
+\end{equation}
+
+Por la regla de los signos de Descartes \cite{Descartes}, si los términos de un polinomio con coeficientes reales se colocan en orden descendente de grado; entonces el número de raíces positivas del polinomio es o igual al número de cambios de signo o menor por una diferencia par. Como tenemos que $f_i \geq 0$ y $0<s_{i}<1$ para todo $i$, entonces en la Ec. \ref{03:Ecuacion_1} tenemos solo un cambio de signo en los coeficientes, con lo cual solo una raíz $r_1$ sera positiva y nos interesa encontrar en que condición es mayor que 1.
+
+Si evaluamos la Ec. \ref{03:Ecuacion_1} en $r=0$ tenemos que $R(0) = - f_{k} s_0 \dots s_{k-1} < 0$. De manera que para $0<r<r_1$, $R(r)$ es negativo y mientras que para $r>r_1$ tenemos que $R(r)$ es positivo. Tenemos entonces que, si $R(1)<0$, necesariamente $r_1 > 1$. También es valida la vuelta, debido a que si $r_1 > 1$, $R(r)$ es negativo, ya que lo es para todo $r$ que cumpla $0<r<r_1$.

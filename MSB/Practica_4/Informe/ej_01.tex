@@ -1,0 +1,64 @@
+\section*{Ejercicio 1 - Modelo de Goodwin}
+
+Tenemos un mecanismo de regulación de la expresión de un gen, descripto por
+\begin{align}
+    \frac{dm}{dt} &= \alpha_m g_{R}\left(p\right) - \beta_m m \\
+    \frac{de}{dt} &= \alpha_e m - \beta_e e \\
+    \frac{dp}{dt} &= \alpha_p e - \beta_p p
+\end{align}
+donde $m$ es la concentración del mRNA, que produce la enzima $e$, la cual contribuye a la producción de una proteína $p$. La regulación está controlada por la proteína, con una función de represión de la forma:
+\begin{equation}
+    g_R \left(p\right) = \frac{a}{b+cp^{h}}.
+    \label{eq:represion}
+\end{equation}
+
+En la Fig. \ref{ej1:concentraciones_barrido_h} se observan los resultados de la simulación numérica realizada para distintos valores del parámetro de Hill $h$, fijando los valores del resto de los parámetros a $\alpha_m = \alpha_e = \alpha_e =1$, $a=b=c=1$ y $\beta_m = \beta_e = \beta_p = 0.1$. Luego de un periodo transitorio, se observa que para $h=8$ y $h=12$ las oscilaciones son sostenidas, con una mayor amplitud para $h=12$, mientras que para $h=6$ las oscilaciones son amortiguadas y terminan desapareciendo.
+
+\begin{figure}[htb!]
+    \centering
+    \begin{subfigure}[b]{0.42\textwidth}
+        \includegraphics[width=\textwidth]{../ej1_Resultados/h=6_Concentraciones.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.42\textwidth}
+        \includegraphics[width=\textwidth]{../ej1_Resultados/h=8_Concentraciones.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.42\textwidth}
+        \includegraphics[width=\textwidth]{../ej1_Resultados/h=12_Concentraciones.pdf}
+    \end{subfigure}
+    \caption{Evolución de las concentraciones de mRNA, proteína y enzima para distintos valores del parámetro de Hill $h$. Luego de un periodo transitorio, se observa que para $h=8$ y $h=12$ las oscilaciones son sostenidas, con una mayor amplitud para $h=12$, mientras que para $h=6$ las oscilaciones son amortiguadas y terminan desapareciendo.}
+    \label{ej1:concentraciones_barrido_h}
+\end{figure}
+
+En la Fig. \ref{ej1:concentraciones_barrido_h_estacionario} se observan los mismos resultados que en la Fig. \ref{ej1:concentraciones_barrido_h} pero para tiempos mas largos, de manera de observar en detalle el periodo estacionario del sistema. Se observa que para $h=7$ las oscilaciones continúan disminuyendo su amplitud, al igual que para $h=8$ (aunque puede suceder que aun no se haya alcanzado el estado estacionario), pero para $h=10$ y $h=14$ las oscilaciones ya son sostenidas.
+
+\begin{figure}[htb!]
+    \centering
+    \begin{subfigure}[b]{0.42\textwidth}
+        \includegraphics[width=\textwidth]{../ej1_Resultados/m_estacionario.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.42\textwidth}
+        \includegraphics[width=\textwidth]{../ej1_Resultados/p_estacionario.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.42\textwidth}
+        \includegraphics[width=\textwidth]{../ej1_Resultados/e_estacionario.pdf}
+    \end{subfigure}
+    \caption{Estado estacionario de las concentraciones de mRNA, proteína y enzima para distintos valores del parámetro de Hill $h$. Se observa que para $h=7$ las oscilaciones continúan disminuyendo su amplitud, al igual que para $h=8$ (aunque puede suceder que aun no se haya alcanzado el estado estacionario), pero para $h=10$ y $h=14$ las oscilaciones ya son sostenidas.}
+    \label{ej1:concentraciones_barrido_h_estacionario}
+\end{figure}
+
+Luego, utilizando un valor de $h=10$ en el cual se observaran oscilaciones, se busco estudiar el efecto en la dinámica del sistema al aumentar la degradación $\beta$ de las distintas concentraciones. El resto de parámetros $\alpha_i$ y $a$, $b$ y $c$ se mantuvieron iguales y se utilizo el mismo valor de la degradación tanto para el mRNA, la proteína y la enzima. En la Fig. \ref{ej1:concentraciones_barrido_b} se observan los resultados obtenidos para valores de $\beta$ iguales a $0.1$, $0.5$ y $1$. Al aumentar el valor de $\beta$ a $0.5$, primero se observa que las oscilaciones aumentan tanto su frecuencia como su amplitud respecto a las oscilaciones observadas para $\beta=0.1$. Luego, al continuar aumentando $\beta$, se observa que las oscilaciones desaparecen para todas las concentraciones.
+
+\begin{figure}[htb!]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{../ej1_Resultados/b=0.1_Barrido.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{../ej1_Resultados/b=0.5_Barrido.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{../ej1_Resultados/b=1_Barrido.pdf}
+    \end{subfigure}
+    \caption{Evolución de las concentraciones de mRNA, proteína y enzima para distintos valores del parámetro $\beta$, tomando $h=10$. Al aumentar el valor de $\beta$ a $0.5$, primero se observa que las oscilaciones aumentan tanto su frecuencia como su amplitud respecto a las oscilaciones observadas para $\beta=0.1$. Luego, al continuar aumentando $\beta$, se observa que las oscilaciones desaparecen para todas las concentraciones.}
+    \label{ej1:concentraciones_barrido_b}
+\end{figure}

@@ -1,0 +1,79 @@
+\section*{Ejercicio 1 - Sistema SIRS}
+
+Tenemos el sistema de susceptibles-infectados-recuperados con pérdida de inmunidad, con una tasa de contagio $\beta$, una duración media de infección $\tau_{I}$ y de pérdida de inmunidad $\tau_{R}$. Las ecuaciones de la dinámica de campo medio son
+\begin{align}
+    \frac{ds\left(t\right)}{dt} &=  -\beta s\left(t\right)i\left(t\right) + \frac{1}{\tau_{R}}r\left(t\right)\label{eq:s}\\
+    \frac{di\left(t\right)}{dt} &=  \beta s\left(t\right)i\left(t\right) - \frac{1}{\tau_{I}}i\left(t\right) \label{eq:i}\\
+    \frac{dr\left(t\right)}{dt} &=  \frac{1}{\tau_{I}}i\left(t\right) -\frac{1}{\tau_{R}}r\left(t\right)\label{eq:r}
+\end{align}
+en donde además
+\begin{equation}
+    s\left(t\right) + i\left(t\right) + r\left(t\right)  = 1 \label{eq:Normalizacion}
+\end{equation}
+ya que no consideramos demografía.
+
+Primero queremos encontrar los puntos fijos $\left(s^*, i^*, r^*\right)$ del sistema, para lo cual igualamos a cero las ecuaciones \ref{eq:s}, \ref{eq:i} y \ref{eq:r}. De la Ec. \ref{eq:r} obtenemos que
+\begin{equation}
+    0 = \frac{i^*}{\tau_{I}} - \frac{r^*}{\tau_{R}} \Rightarrow \boxed{\frac{i^*}{\tau_{I}} = \frac{r^*}{\tau_{R}}}. \label{eq:1erCond}
+\end{equation}
+
+Por otro lado, igualando las derivadas temporales de las ecuaciones \ref{eq:s} y \ref{eq:i} a cero y restandolas tenemos que
+\begin{equation}
+    0 = 2\beta s^* i^* - ( \frac{i^*}{\tau_{I}} + \underbrace{\frac{r^*}{\tau_{R}}}_{\frac{i^*}{\tau_{I}}} ) = 2\beta s^* i^* - 2\frac{i^*}{\tau_{I}} \Rightarrow \beta s^* i^* = \frac{i^*}{\tau_{I}}. \label{eq:2da_cond_bis}
+\end{equation}
+La solución en donde $i^* = 0 \Rightarrow r^*=0 \Rightarrow s^* = 1$ no es una solución que nos interese ya que en el caso en donde no hay infectados y solo hay individuos susceptibles. Entonces, si $i^* \neq 0$, obtenemos de la Ec. \ref{eq:2da_cond_bis} que
+\begin{equation}
+    \boxed{s^* = \frac{1}{\beta \tau_{I}}}. \label{eq:2da_cond}
+\end{equation}
+
+En este punto la primera parte del ejercicio esta resuelta, pero vamos a sacar una condición mas que luego vamos a usar. Usando las Ec. \ref{eq:Normalizacion} y \ref{eq:2da_cond} tenemos que
+\begin{eqnarray}
+    &\frac{i^*}{\tau_I} = \frac{r^*}{\tau_R} = \frac{1-i^*-s^*}{\tau_R} = \frac{1}{\tau_R}\left(1-\frac{1}{\beta \tau_I}\right) - \frac{i^*}{\tau_R} = \frac{\beta \tau_I-1}{\tau_R\beta \tau_I} - \frac{i^*}{\tau_R}\\
+    & \Rightarrow\,\,  i^* \left(\frac{1}{\tau_I} + \frac{1}{\tau_R}  \right) = i^* \frac{\tau_R + \tau_I}{\tau_R  \tau_I} =\frac{\beta \tau_I-1}{\tau_R\beta \tau_I} \\
+    & \Rightarrow\,\,  \boxed{i^* = \frac{\beta \tau_I-1}{\beta \left( \tau_R + \tau_I \right)}}.\label{eq:3ra_Cond}
+\end{eqnarray}
+
+Ahora queremos analizar la estabilidad del punto fijo. Debido a la cond. \ref{eq:Normalizacion}, podemos reescribir las ecuaciones de la dinámica para dejarlas solo en términos de $s$ e $i$, usando que $r=1-s-i$, para lo cual obtenemos
+\begin{align}
+    \frac{ds}{dt} &=  -\beta si + \frac{1-s-i}{\tau_{R}}\label{eq:s_2}\\
+    \frac{di}{dt} &=  \beta si - \frac{1}{\tau_{I}}i \label{eq:i_2}.
+\end{align}
+
+Calculando el Jacobiano obtenemos
+\begin{equation}
+    J = \begin{pmatrix}
+        -\beta i - \frac{1}{\tau_R} & -\beta s - \frac{1}{\tau_R} \\[6pt]
+        \beta i                     & \beta s - \frac{1}{\tau_I}
+    \end{pmatrix}
+\end{equation}
+y evaluando en el punto fijo utilizando las ecuaciones \ref{eq:2da_cond} y \ref{eq:3ra_Cond}
+\begin{equation}
+    J|_{\left(s^*,i^*\right)}  = \begin{pmatrix}
+        -\beta i^* - \frac{1}{\tau_R} & -\beta s^* - \frac{1}{\tau_R} \\[6pt]
+        \beta i^*                     & \beta s^* - \frac{1}{\tau_I}
+    \end{pmatrix} 
+\end{equation}
+\begin{equation}
+    J|_{\left(s^*,i^*\right)} = 
+    \begin{pmatrix}
+        -\frac{\tau_I \left( \beta \tau_R + 1 \right)}{\tau_R \left(\tau_I + \tau_R \right)} & -\frac{\tau_R + \tau_I}{\tau_R  \tau_I} \\[6pt]
+        \frac{\beta \tau_I-1}{ \tau_R + \tau_I }                     & 0
+    \end{pmatrix}
+\end{equation}
+y se puede obtener sin problema tanto la traza como el determinante
+\begin{equation}
+    \text{tr} \left(J|_{\left(s^*,i^*\right)}\right) = -\frac{\tau_I \left( \beta \tau_R + 1 \right)}{\tau_R \left(\tau_I + \tau_R \right)}
+\end{equation}
+\begin{equation}
+    \det \left(J|_{\left(s^*,i^*\right)}\right) = \frac{\beta \tau_I - 1}{\tau_R + \tau_I}.
+    \label{eq:det}
+\end{equation}
+
+Los autovalores del sistema vendrán dados por
+\begin{equation}
+    \lambda_{1,2} = \frac{1}{2} \left( \text{tr} (J) \pm \sqrt{\text{tr} (J) ^2 -4\det (J)}   \right).
+\end{equation}
+
+Dado que tanto $\tau_R$, $\tau_I$ como $\beta$ son positivos, siempre se cumple que $\text{tr} \left(J|_{\left(s^*,i^*\right)}\right) < 0$. Por otro lado, de la Ec. \ref{eq:2da_cond} tenemos que $s^*=\dfrac{1}{\beta \tau_I}$, pero dado que $s^*$ representa una densidad de población y $s+i+r=1$, tenemos que $0 \leq s^* < 1$ ($s^*=1$ es un equilibrio que ya descartamos) y para que esto se cumpla es necesario que $\beta \tau_I >1$. De la Ec \ref{eq:det} se desprende entonces que $\det (J) > 0$.
+
+En este punto, matemáticamente existen 3 posibilidades dependiendo de si $\text{tr}(J)^2$ es mayor, igual o menor que $4\det (J)$. Si $4\det J < \text{tr} (J)^2$ los autovalores son reales y negativos (ya que $\text{tr}(J)<0$), con lo cual tenemos un nodo estable. En caso de que $4\det J = \text{tr} (J)^2$, los dos autovalores son iguales y el equilibrio es una nodo estable degenerado. Por último, si $4\det J > \text{tr} (J)^2$ los autovalores son complejos conjugados y su parte real es negativa, de manera que tendremos una espiral estable, con lo cual tanto $s$ como $i$ presentan oscilaciones amortiguadas hacia los puntos de equilibrio estables.

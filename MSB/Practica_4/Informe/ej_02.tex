@@ -1,0 +1,47 @@
+\clearpage
+\section*{Ejercicio 2}
+
+Pasamos a estudiar la dinámica de un sistema de dos genes con represión mutua:
+\begin{align}
+    \frac{dm_1}{dt} &= \alpha_m g_R \left( p_2 \right) - \beta_m m_1 \label{eq:m1} \\
+    \frac{dm_2}{dt} &= \alpha_m g_R \left( p_1 \right) - \beta_m m_2 \label{eq:m2}\\
+    \frac{dp_1}{dt} &= \alpha_p m_1 - \beta_p p_1 \label{eq:b1}\\
+    \frac{dp_2}{dt} &= \alpha_p m_2 - \beta_p p_2 \label{eq:b2}
+\end{align}
+donde las funciones de represión son iguales para ambas especies y vienen dadas por la Ec. \ref{eq:represion}.
+
+Consideramos el caso en donde $\beta_p \ll \beta_m$, con lo cual la dinámica de las proteínas es mucho as lenta que la del mRNA, de manera que este ultimo llegara mucho antes al estado estacionario, con lo cual podemos considerar que $\frac{dm_1}{dt} = \frac{dm_2}{dt} \approx 0$. Bajo estas condiciones, podemos obtener de las Ec. \ref{eq:m1} y \ref{eq:m2} que
+\begin{align}
+    m_1 &= \frac{\alpha_m}{\beta_m} g_R \left( p_2 \right) \\
+    m_2 &= \frac{\alpha_m}{\beta_m} g_R \left( p_1 \right)
+\end{align}
+y reemplazando este resultado en las Ec.  \ref{eq:b1} y \ref{eq:b2} obtenemos el sistema reducido a dos variables
+\begin{align}
+    \frac{dp_1}{dt} &= \frac{\alpha_p \alpha_m}{\beta_m} g_R \left( p_2 \right) - \beta_p p_1 \label{eq:p1}\\
+    \frac{dp_2}{dt} &= \frac{\alpha_p \alpha_m}{\beta_m} g_R \left( p_1 \right) - \beta_p p_2 \label{eq:p2}.
+\end{align}
+
+No podemos obtener los puntos fijos de este sistema de manera analítica, pero podemos obtenerlos a partir de la intersección de las nulclinas, las cuales podemos obtener igualando a cero las derivadas temporales de las Ec. \ref{eq:p1} y \ref{eq:p2}, obteniendo
+\begin{align}
+    p_1^* &= \frac{\alpha_p \alpha_m}{\beta_p \beta_m} g_R \left(p_2 \right) \\
+    p_2^* &= \frac{\alpha_p \alpha_m}{\beta_p \beta_m} g_R \left(p_1 \right).
+\end{align}
+
+Para ademas de encontrar los puntos fijos, poder estudiar su estabilidad, se simulo el sistema utilizando los siguientes parámetros: $a=c=1$, $\alpha_m = \alpha_p = 1$, $\beta_m = 1$ y $\beta_p = 0.001$ (de manera que sea valido la aproximación $\beta_p \ll \beta_m$) y el parámetro de hill utilizado fue de $h=3$. En cuanto al parámetro $b$, se busco realizar un barrido del mismo para estudiar la bifurcación que produce la sensibilidad en la función de represión. Para cada simulación, ademas de obtener los puntos fijos como la intersección de las nulclinas, se realizo un \texttt{StreamPlot} para analizar su estabilidad.
+
+\begin{figure}[htb!]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../ej2_Resultados/StreamPlot_b=300.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../ej2_Resultados/StreamPlot_b=170.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../ej2_Resultados/StreamPlot_b=100.pdf}
+    \end{subfigure}
+    \caption{Se observan las nulclinas del sistema para distintos valores del parametros $b$, ademas de un \texttt{StreamPlot} para visualizar la estabilidad de los puntos fijos. Observamos que para $b=300$ el sistema tiene un solo punto de equilibrio estable, mientras que al disminuir $b$ el sistema posee 3 puntos de equilibrio, dos de ellos estables.}
+    \label{ej2:StreamPlot}
+\end{figure}
+
+En la Fig. \ref{ej2:StreamPlot} se observan los resultados obtenidos para $b$ igual a $100$, $170$ y $300$. Para $b=300$ se observa un punto de equilibrio estable. Al disminuir $b$, se observa que el efecto en las nulclinas es que las pendientes de las curvas en el punto de equilibrio comienzan igualarse, lo cual puede observarse para los resultados obtenidos con $b=170$. Una vez igualadas, al seguir disminuyendo el valor de $b$ se observa la aparición de dos nuevos puntos de equilibrio. Estos dos nuevos puntos de equilibrio son estables, mientras que el punto de equilibrio en $p_1^* = p_2^*$ cambia de estabilidad, convirtiéndose en un equilibrio inestable. De esta manera, vemos que para $b$ "grandes" tenemos un comportamiento monoestable y al aumentar $b$ pasamos a un comportamiento biestable con dos puntos de equilibrio.
