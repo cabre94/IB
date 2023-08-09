@@ -1,2 +1,2 @@
 # IB
-Codigos de las distintas cursadas del Instituo Balseiro
+Codigos de las distintas cursadas del Instituto Balseiro
